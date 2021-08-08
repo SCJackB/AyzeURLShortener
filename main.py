@@ -1,4 +1,4 @@
-#improt flask app function from __init__
+#import flask app function from __init__
 from website import create_app
 
 #define 'app' as the flask app without running it
