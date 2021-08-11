@@ -15,9 +15,13 @@
   </head>
 
   <body>
+    <!--Create a navbar with primary background colour-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <!--Make the navbar span the whole window-->
       <div class="container-fluid">
+        <!--Navbar title-->
         <a class="navbar-brand" href="#">Ayze.xyz</a>
+        <!--Navbar expand button for mobile view / minimised window-->
         <button
           class="navbar-toggler"
           type="button"
@@ -30,9 +34,13 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
+        <!--This section of the navbar collapses when in mobile view-->
         <div class="collapse navbar-collapse" id="navbarColor01">
+          <!--list of items in navbar-->
           <ul class="navbar-nav me-auto">
+            <!--Adds an item to the navbar-->
             <li class="nav-item">
+              <!--Makes navbar item a link-->
               <a class="nav-link" href="#">URL Shortener</a>
             </li>
             <li class="nav-item">
@@ -45,8 +53,11 @@
               <a class="nav-link" href="#">About</a>
             </li>
           </ul>
+          <!--Make items stick to right side of navbar-->
           <div class="d-flex align-items-center">
+            <!--Log in Button-->
             <a class="nav-link text-light" href="#">Login</a>
+            <!--Sign up Button-->
             <button type="button" class="btn btn-secondary" action="#">
               Sign up
             </button>
@@ -55,15 +66,130 @@
       </div>
     </nav>
 
+    <!--Make a container for the info cards-->
+    <div class="container">
+      <!--Make a container that rearranges elements depending on screen size-->
+      <div class="row">
+        <!--Make the cards span 4 columns-->
+        <div class="col-md-4">
+          <!--Create the card w/ white text and primary background and a margin of 10px at the top and bottom-->
+          <div
+            class="card text-white bg-primary md-4"
+            style="margin-top: 10px; margin-bottom: 10px"
+          >
+            <!--Card Title-->
+            <div class="card-header">URL Shortener</div>
+            <!--Card Body-->
+            <div class="card-body">
+              <!--Info on the card-->
+              <p class="card-text">
+                A simple converter which shortens unwieldy, long URLs into a
+                shorter, more manageable form.
+              </p>
+              <!--'Go to' Button-->
+              <button type="button" class="btn btn-secondary">Go to</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div
+            class="card text-white bg-primary md-4"
+            style="margin-top: 10px; margin-bottom: 10px"
+          >
+            <div class="card-header">URL Checker</div>
+            <div class="card-body">
+              <p class="card-text">
+                Essentially the inverse of the shortener, the URL Checker allows
+                you to view the original URL from the shortened version.
+              </p>
+              <button type="button" class="btn btn-secondary">Go to</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div
+            class="card text-white bg-primary md-4"
+            style="margin-top: 10px; margin-bottom: 10px"
+          >
+            <div class="card-header">URL Manager</div>
+            <div class="card-body">
+              <p class="card-text">
+                View and delete your shortened URLs.<br /><br /><br />
+              </p>
+              <button type="button" class="btn btn-secondary">Go to</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Make background around contact form secondary colour-->
+    <div class="container-fluid bg-secondary" style="padding-bottom: 10px">
+      <!--Add margin to the contact form-->
+      <div class="container">
+        <!--Contact us text header-->
+        <h1 class="text-center">Contact Us</h1>
+        <!--Make a container that rearranges elements depending on screen size-->
+        <div class="row">
+          <label class="col-form-label" for="inputDefault">Name</label>
+          <div class="form-group col-md-6">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="First"
+              id="inputDefault"
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Last"
+              id="inputDefault"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label" for="inputDefault">Email address</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter email"
+            id="inputDefault"
+          />
+        </div>
+        <div class="form-group">
+          <label class="col-form-label" for="inputDefault">Email Subject</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Subject"
+            id="inputDefault"
+          />
+        </div>
+        <div class="form-group">
+          <label for="inputDefault">Message</label>
+          <textarea
+            class="form-control"
+            id="inputDefault"
+            rows="3"
+            style="margin-top: 0px; margin-bottom: 0px; height: 135px"
+          ></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" style="margin-top: 5px">
+          Send
+        </button>
+      </div>
+    </div>
+
+    <!--Footer w/ light colour background and centered text-->
     <footer class="bg-light text-center text-lg-start">
-      <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
         View the source on
         <a class="text-dark" href="https://github.com/SCJackB/AyzeURLShortener"
           >Github</a
         >
       </div>
-      <!-- Copyright -->
     </footer>
 
     <!--Linking to the Bootstrap Javascript-->
