@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Defining the charset as unicode-->
+    <meta charset="utf-8" />
+
+    <!--Defining the veiwport size-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--Linking the CSS stylesheet to the html document-->
+    <link href="..\static\bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <!--Place holder title-->
+    <title>Sign Up</title>
+  </head>
+
+  <body>
+    <div
+      class="bg-image d-flex justify-content-center align-items-center"
+      style="background-image: url(../static/sign-up_image.jpg); height: 30vh"
+    >
+      <img
+        src="../static/Ayze Jumbotron.png"
+        class="img-fluid"
+        alt="..."
+        style="height: 30vh"
+      />
+    </div>
+
+    <div
+      class="container-fluid bg-secondary"
+      style="padding-bottom: 10px; padding-top: 10px"
+    >
+      <div class="container">
+        <h1 class="text-center">Sign Up</h1>
+
+        <!--If the form message is 'fieldError'-->
+        {% if formMessage == 'fieldError' %}
+        <!--Display a dismissable error stating 'All fields required'-->
+        <div class="alert alert-dismissible alert-danger">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+          ></button>
+          All fields required
+        </div>
+        {% endif %}
+
+        <!--If the form message is 'emailError'-->
+        {% if formMessage == 'emailError' %}
+        <!--Display a dismissable error stating 'Please enter a valid email'-->
+        <div class="alert alert-dismissible alert-danger">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+          ></button>
+          Please enter a valid email
+        </div>
+        {% endif %}
+
+        <!--If the form message is 'usernameError'-->
+        {% if formMessage == 'usernameError' %}
+        <!--Display a dismissable error stating 'Username must be longer than 3 characters'-->
+        <div class="alert alert-dismissible alert-danger">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+          ></button>
+          Username must be longer than 3 characters
+        </div>
+        {% endif %}
+
+        <!--If the form message is 'matchError'-->
+        {% if formMessage == 'matchError' %}
+        <!--Display a dismissable error stating 'Passwords do not match'-->
+        <div class="alert alert-dismissible alert-danger">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+          ></button>
+          Passwords do not match
+        </div>
+        {% endif %}
+
+        <!--If the form message is 'passwordError'-->
+        {% if formMessage == 'passwordError' %}
+        <!--Display a dismissable error stating 'Passwords do not match'-->
+        <div class="alert alert-dismissible alert-danger">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+          ></button>
+          Password must be longer than 7 characters
+        </div>
+        {% endif %}
+
+        <form action="/sign-up" method="post">
+          <div class="form-group">
+            <!--Username Label-->
+            <label class="col-form-label" for="inputDefault">Username</label>
+            <!--Username input box-->
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Choose a Username"
+              id="username"
+              name="username"
+            />
+          </div>
+          <div class="form-group">
+            <!--Email Label-->
+            <label class="col-form-label" for="inputDefault">Email</label>
+            <!--Email Address input box-->
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter Your Email"
+              id="emailSignup"
+              name="emailSignup"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Create Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="createPassword"
+              name="createPassword"
+              placeholder="Password"
+            />
+          </div>
+          <div class="form-group" style="margin-top: 5px">
+            <input
+              type="password"
+              class="form-control"
+              id="confirmPassword"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="margin-top: 5px"
+            value="submit"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!--Footer w/ light colour background and centered text-->
+    <footer class="bg-light text-center text-lg-start">
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        View the source on
+        <a class="text-dark" href="https://github.com/SCJackB/AyzeURLShortener"
+          >Github</a
+        >
+      </div>
+    </footer>
+
+    <script
+      src="../static/bootstrap.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -11,7 +11,7 @@
     <link href="..\static\bootstrap.css" rel="stylesheet" type="text/css" />
 
     <!--Place holder title-->
-    <title>...</title>
+    {% block homeTitle %}{% endblock %}
   </head>
 
   <body>
@@ -58,9 +58,11 @@
             <!--Log in Button-->
             <a class="nav-link text-light" href="#">Login</a>
             <!--Sign up Button-->
-            <button type="button" class="btn btn-secondary" action="#">
+            <a href="/sign-up">
+            <button type="button" class="btn btn-secondary">
               Sign up
             </button>
+            </a>
           </div>
         </div>
       </div>
