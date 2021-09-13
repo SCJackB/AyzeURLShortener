@@ -1,4 +1,5 @@
 # AyzeURLShortener
+A simple URL shortener and manager using the Flask python module
 
 ## Setup & Installtion
 
