@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Defining the charset as unicode-->
+    <meta charset="utf-8" />
+
+    <!--Defining the veiwport size-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--Linking the CSS stylesheet to the html document-->
+    <link href="..\static\bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <!--Place holder title-->
+    <title>Sign Up</title>
+  </head>
+
+  <body>
+    <div
+      class="bg-image d-flex justify-content-center align-items-center"
+      style="background-image: url(../static/login_image.jpg); height: 30vh"
+    >
+      <a href="/">
+        <img
+          src="../static/Ayze Jumbotron.png"
+          class="img-fluid"
+          alt="..."
+          style="height: 30vh"
+        />
+      </a>
+    </div>
+
+    <div
+      class="container-fluid bg-secondary"
+      style="padding-bottom: 10px; padding-top: 10px"
+    >
+      <div class="container">
+        <h1 class="text-center">Log in</h1>
+
+        <!--If the form message is 'fieldError'-->
+        {% if formMessage == 'fieldError' %}
+        <!--Display a dismissable error stating 'All fields required'-->
+        <div class="alert alert-dismissible alert-danger">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+          ></button>
+          All fields required
+        </div>
+        {% endif %}
+
+        <form action="/login" method="post">
+          <div class="form-group">
+            <!--Username Label-->
+            <label class="col-form-label" for="inputDefault"
+              >Username or Email</label
+            >
+            <!--Username input box-->
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter username or email"
+              id="usernameEmail"
+              name="usernameEmail"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="createPassword"
+              name="password"
+              placeholder="password"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="margin-top: 5px"
+            value="submit"
+          >
+            Login
+          </button>
+        </form>
+      </div>
+      <p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </p>
+    </div>
+
+    <!--Footer w/ light colour background and centered text-->
+    <footer class="bg-light text-center text-lg-start">
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        View the source on
+        <a class="text-dark" href="https://github.com/SCJackB/AyzeURLShortener"
+          >Github</a
+        >
+      </div>
+    </footer>
+
+    <script
+      src="../static/bootstrap.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
