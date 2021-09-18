@@ -2,71 +2,95 @@ from flask import Blueprint, render_template, request, redirect
 import smtplib
 import os
 
-#set up the views blueprint
-views = Blueprint('views', __name__)
+# set up the views blueprint
+views = Blueprint("views", __name__)
 
-#defining home view
-@views.route("/", methods=['POST', 'GET'])
+# defining home view
+@views.route("/", methods=["POST", "GET"])
 def homePage():
-    #creating the variables for the different input scenarios for the email form
+    # creating the variables for the different input scenarios for the email form
     if request.method == "POST":
-        #get value from first name input
+        # get value from first name input
         firstName = request.form.get("firstName")
-        #get value from last name input
+        # get value from last name input
         lastName = request.form.get("lastName")
-        #get email address
+        # get email address
         emailAddress = request.form.get("emailAddress")
-        #get email subject
+        # get email subject
         emailSubject = request.form.get("emailSubject")
-        #get email message
+        # get email message
         emailMessage = request.form.get("emailMessage")
 
-        #check if any of the input fields are blank
-        if not firstName or not lastName or not emailAddress or not emailSubject or not emailMessage:
-            #if they are blank, set the form message to 'field error' and run the render the 'home' webpage
-            formMessage = 'fieldError'
-            return render_template('home.html',formMessage=formMessage,emailMessage=emailMessage)
-        #if all fields have data...
+        # check if any of the input fields are blank
+        if (
+            not firstName
+            or not lastName
+            or not emailAddress
+            or not emailSubject
+            or not emailMessage
+        ):
+            # if they are blank, set the form message to 'field error' and run the render the 'home' webpage
+            formMessage = "fieldError"
+            return render_template(
+                "home.html", formMessage=formMessage, emailMessage=emailMessage
+            )
+        # if all fields have data...
         else:
-            #check if the email address is valid
-            if '@' in emailAddress and '.' in emailAddress:
-                #if the email address is valid...
-                #format the gathered data for the email
-                messageFormat = "Subject: "+emailSubject+"\n\n"+"Name: "+firstName+" "+lastName+"\nEmail: "+emailAddress+"\nMessage:\n"+emailMessage
-                #create an email server
+            # check if the email address is valid
+            if "@" in emailAddress and "." in emailAddress:
+                # if the email address is valid...
+                # format the gathered data for the email
+                messageFormat = (
+                    "Subject: "
+                    + emailSubject
+                    + "\n\n"
+                    + "Name: "
+                    + firstName
+                    + " "
+                    + lastName
+                    + "\nEmail: "
+                    + emailAddress
+                    + "\nMessage:\n"
+                    + emailMessage
+                )
+                # create an email server
                 server = smtplib.SMTP("smtp.gmail.com", 587)
-                #Identify self to server
+                # Identify self to server
                 server.ehlo()
-                #encrypt the connection to the server
+                # encrypt the connection to the server
                 server.starttls()
-                #re-identify
+                # re-identify
                 server.ehlo()
-                #store the email address that will send and recieve the emails as a string
+                # store the email address that will send and recieve the emails as a string
                 serverAddress = "ayze.xyz@gmail.com"
-                #get the environmental variable that stores the password and store it as a string
+                # get the environmental variable that stores the password and store it as a string
                 serverPassword = str(os.environ.get("AYZE_EMAILACC_PASSWORD"))
                 try:
-                    #try to log in to gmail
+                    # try to log in to gmail
                     server.login(serverAddress, serverPassword)
-                    #and try to send the email
-                    server.sendmail("ayze.xyz@gmail.com", "ayze.xyz@gmail.com", messageFormat)
-                    #if both of those work, set form message to 'success'
-                    formMessage = 'success'
-                    #and render the webpage
-                    return render_template('home.html',formMessage=formMessage)
+                    # and try to send the email
+                    server.sendmail(
+                        "ayze.xyz@gmail.com", "ayze.xyz@gmail.com", messageFormat
+                    )
+                    # if both of those work, set form message to 'success'
+                    formMessage = "success"
+                    # and render the webpage
+                    return render_template("home.html", formMessage=formMessage)
 
-                    #if login, or email fails...
+                    # if login, or email fails...
                 except Exception:
-                    #set the form message to 'internal error'
-                    formMessage = 'internalError'
-                    #and render the webpage
-                    return render_template('home.html',formMessage=formMessage)
-                
+                    # set the form message to 'internal error'
+                    formMessage = "internalError"
+                    # and render the webpage
+                    return render_template("home.html", formMessage=formMessage)
+
             else:
-                #if the email is invalid, set the form message to emailError
-                formMessage = 'emailError'
-                #and render the webpage
-                return render_template('home.html',formMessage=formMessage,emailMessage=emailMessage)
+                # if the email is invalid, set the form message to emailError
+                formMessage = "emailError"
+                # and render the webpage
+                return render_template(
+                    "home.html", formMessage=formMessage, emailMessage=emailMessage
+                )
     else:
-        #if no form submission, render the home template
-        return render_template('home.html')
+        # if no form submission, render the home template
+        return render_template("home.html")
