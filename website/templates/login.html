@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <!--Defining the charset as unicode-->
-    <meta charset="utf-8" />
+{% extends "base.html" %}
 
-    <!--Defining the veiwport size-->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+{% block loginTitle %}
+<title>Sign Up</title>
+{% endblock %}
 
-    <!--Linking the CSS stylesheet to the html document-->
-    <link href="..\static\bootstrap.css" rel="stylesheet" type="text/css" />
-
-    <!--Place holder title-->
-    <title>Sign Up</title>
-  </head>
-
-  <body>
+{% block loginBody %}
     <div
       class="bg-image d-flex justify-content-center align-items-center"
       style="background-image: url(../static/login_image.jpg); height: 30vh"
@@ -49,17 +39,43 @@
         </div>
         {% endif %}
 
+        <!--If the form message is 'incorrectPassword'-->
+        {% if formMessage == 'incorrectPassword' %}
+        <!--Display a dismissable error stating 'Password Incorrect'-->
+        <div class="alert alert-dismissible alert-danger">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+          ></button>
+          Incorrect Password
+        </div>
+        {% endif %}
+
+        <!--If the form message is 'noUser'-->
+        {% if formMessage == 'noUser' %}
+        <!--Display a dismissable error stating 'That user does not exist'-->
+        <div class="alert alert-dismissible alert-danger">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+          ></button>
+          User Does not Exist
+        </div>
+        {% endif %}
+
         <form action="/login" method="post">
           <div class="form-group">
             <!--Username Label-->
             <label class="col-form-label" for="inputDefault"
-              >Username or Email</label
+              >Email</label
             >
             <!--Username input box-->
             <input
               type="text"
               class="form-control"
-              placeholder="Enter username or email"
+              placeholder="Enter email"
               id="usernameEmail"
               name="usernameEmail"
             />
@@ -102,11 +118,4 @@
         >
       </div>
     </footer>
-
-    <script
-      src="../static/bootstrap.min.js"
-      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
-      crossorigin="anonymous"
-    ></script>
-  </body>
-</html>
+{% endblock %}

@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect
 import smtplib
 import os
+from flask_login import login_required, current_user
 
 # set up the views blueprint
 views = Blueprint("views", __name__)
@@ -64,11 +65,11 @@ def homePage():
                 # store the email address that will send and recieve the emails as a string
                 serverAddress = "ayze.xyz@gmail.com"
                 # get the environmental variable that stores the password and store it as a string
-                serverPassword = str(os.environ.get("AYZE_EMAILACC_PASSWORD"))
+                serverPassword = os.environ.get("AYZE_EMAILACC_PASSWORD")
+                # try to log in to gmail
+                server.login(serverAddress, serverPassword)
+                # and try to send the email
                 try:
-                    # try to log in to gmail
-                    server.login(serverAddress, serverPassword)
-                    # and try to send the email
                     server.sendmail(
                         "ayze.xyz@gmail.com", "ayze.xyz@gmail.com", messageFormat
                     )

@@ -3,7 +3,7 @@ from werkzeug.utils import redirect
 from .models import User
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
-import time
+from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint("auth", __name__)
 
@@ -11,11 +11,23 @@ auth = Blueprint("auth", __name__)
 @auth.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-        usernameEmail = request.form.get("usernameEmail")
+        email = request.form.get("usernameEmail")
         password = request.form.get("password")
-        if not usernameEmail or not password:
+        if not email or not password:
             formMessage = "fieldError"
             return render_template("login.html", formMessage=formMessage)
+        else:
+            user = User.query.filter_by(email=email).first()
+            if user:
+                if check_password_hash(user.password, password):
+                    login_user(user, remember=True)
+                    return redirect(url_for("views.homePage"))
+                else:
+                    formMessage = "incorrectPassword"
+                    return render_template("login.html", formMessage=formMessage)
+            else:
+                formMessage = "noUser"
+                return render_template("login.html", formMessage=formMessage)
     else:
         return render_template("login.html")
 
@@ -51,6 +63,7 @@ def sign_up():
             )
             db.session.add(new_user)
             db.session.commit()
+            login_user((User.query.filter_by(email=email).first()), remember=True)
 
             return redirect(url_for("views.homePage"))
 

@@ -4,3 +4,217 @@
 {% block homeTitle %}
 <title>Ayze</title>
 {% endblock %}
+
+{% block homeBody %}
+<div class="bg-secondary">
+    <div class="container">
+      <form>
+        <div class="row">
+          <div class="col col-md-10">
+            <input type="text" class="form-control my-2" placeholder="Long URL" />
+          </div>
+          <div class="col col-md-2">
+            <button
+              type="button"
+              class="btn btn-primary my-2"
+              style="width: 100%"
+            >
+              Shorten URL
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+<!--Make a container for the info cards-->
+<div class="container">
+    <!--Make a container that rearranges elements depending on screen size-->
+    <div class="row">
+      <!--Make the cards span 4 columns-->
+      <div class="col-md-4">
+        <!--Create the card w/ white text and primary background and a margin of 10px at the top and bottom-->
+        <div
+          class="card text-white bg-primary md-4"
+          style="margin-top: 10px; margin-bottom: 10px"
+        >
+          <!--Card Title-->
+          <div class="card-header">URL Shortener</div>
+          <!--Card Body-->
+          <div class="card-body">
+            <!--Info on the card-->
+            <p class="card-text">
+              A simple converter which shortens unwieldy, long URLs into a
+              shorter, more manageable form.
+            </p>
+            <!--'Go to' Button-->
+            <a href="/">
+            <button type="button" class="btn btn-secondary">Go to</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div
+          class="card text-white bg-primary md-4"
+          style="margin-top: 10px; margin-bottom: 10px"
+        >
+          <div class="card-header">URL Checker</div>
+          <div class="card-body">
+            <p class="card-text">
+              Essentially the inverse of the shortener, the URL Checker allows
+              you to view the original URL from the shortened version.
+            </p>
+            <button type="button" class="btn btn-secondary">Go to</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div
+          class="card text-white bg-primary md-4"
+          style="margin-top: 10px; margin-bottom: 10px"
+        >
+          <div class="card-header">URL Manager</div>
+          <div class="card-body">
+            <p class="card-text">
+              View and delete your shortened URLs.<br /><br /><br />
+            </p>
+            <button type="button" class="btn btn-secondary">Go to</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Email submission form-->
+<!--Make background around contact form secondary colour-->
+<div
+class="container-fluid bg-secondary"
+style="padding-bottom: 10px; padding-top: 10px"
+>
+<!--Add margin to the contact form-->
+<div class="container">
+<!--Contact us text header-->
+<h1 class="text-center">Contact Us</h1>
+
+<!--If the form message is 'fieldError'-->
+{% if formMessage == 'fieldError' %}
+<!--Display a dismissable error stating 'All fields required'-->
+<div class="alert alert-dismissible alert-danger">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  All fields required
+</div>
+{% endif %}
+
+<!--If the form message is 'emailError'-->
+{% if formMessage == 'emailError' %}
+<!--Display a dismissable error stating 'Please enter a valid email'-->
+<div class="alert alert-dismissible alert-danger">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  Please enter a valid email
+</div>
+{% endif %}
+
+<!--If the form message is 'internal Error'-->
+{% if formMessage == 'internalError' %}
+<!--Display a dismissable error stating 'An internal error occured and your message was not sent'-->
+<div class="alert alert-dismissible alert-danger">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  An internal error occured and your message was not sent
+</div>
+{% endif %}
+
+<!--If the form message is 'success'-->
+{% if formMessage == 'success' %}
+<!--Display a dismissable error stating 'Message sent!'-->
+<div class="alert alert-dismissible alert-success">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  Message sent!
+</div>
+{% endif %}
+
+<!--create the post form-->
+<form action="/" method="post">
+<!--Make a container that rearranges elements depending on screen size-->
+<div class="row">
+  <!--Label the name input-->
+  <label class="col-form-label" for="inputDefault">Name</label>
+  <!--Bootstrap styling for input-->
+  <div class="form-group col-md-6">
+    <!--First name input box-->
+    <input
+      type="text"
+      class="form-control"
+      placeholder="First"
+      id="firstName"
+      name="firstName"
+    />
+  </div>
+  <div class="form-group col-md-6">
+    <!--Last name input box-->
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Last"
+      id="lastName"
+      name="lastName"
+    />
+  </div>
+</div>
+<div class="form-group">
+  <!--Email Label-->
+  <label class="col-form-label" for="inputDefault">Email address</label>
+  <!--Email Address input box-->
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Enter email"
+    id="emailAddress"
+    name="emailAddress"
+  />
+</div>
+<div class="form-group">
+  <!---->
+  <label class="col-form-label" for="inputDefault">Email Subject</label>
+  <!--Email subject input box-->
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Subject"
+    id="emailSubject"
+    name="emailSubject"
+  />
+</div>
+<div class="form-group">
+  <label for="inputDefault">Message</label>
+  <!--Message input box-->
+  <textarea
+    class="form-control"
+    id="emailMessage"
+    rows="3"
+    style="margin-top: 0px; margin-bottom: 0px; height: 135px"
+    name="emailMessage"
+  >{{ emailMessage }}</textarea>
+</div>
+<!--Form Submit Button-->
+<button
+  type="submit"
+  class="btn btn-primary"
+  style="margin-top: 5px"
+  value="submit"
+>
+  Send
+</button>
+</div>
+</form>
+</div>
+
+  <!--Footer w/ light colour background and centered text-->
+  <footer class="bg-light text-center text-lg-start">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      View the source on
+      <a class="text-dark" href="https://github.com/SCJackB/AyzeURLShortener"
+        >Github</a
+      >
+    </div>
+  </footer>
+{% endblock %}
