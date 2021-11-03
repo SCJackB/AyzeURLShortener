@@ -76,22 +76,29 @@ def homePage():
                     # if both of those work, set form message to 'success'
                     formMessage = "success"
                     # and render the webpage
-                    return render_template("home.html", formMessage=formMessage)
+                    return render_template(
+                        "home.html", formMessage=formMessage, user=current_user
+                    )
 
                     # if login, or email fails...
                 except Exception:
                     # set the form message to 'internal error'
                     formMessage = "internalError"
                     # and render the webpage
-                    return render_template("home.html", formMessage=formMessage)
+                    return render_template(
+                        "home.html", formMessage=formMessage, user=current_user
+                    )
 
             else:
                 # if the email is invalid, set the form message to emailError
                 formMessage = "emailError"
                 # and render the webpage
                 return render_template(
-                    "home.html", formMessage=formMessage, emailMessage=emailMessage
+                    "home.html",
+                    formMessage=formMessage,
+                    emailMessage=emailMessage,
+                    user=current_user,
                 )
     else:
         # if no form submission, render the home template
-        return render_template("home.html")
+        return render_template("home.html", user=current_user)

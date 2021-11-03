@@ -1,9 +1,19 @@
-{% extends "base.html" %}
-{% block signupTitle %}
-<title>Sign Up</title>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Defining the charset as unicode-->
+  <meta charset="utf-8" />
 
-{% block signupBody %}
+  <!--Defining the veiwport size-->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!--Linking the CSS stylesheet to the html document-->
+  <link href="..\static\bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+  <title>Sign Up</title>
+</head>
+
+<body>
     <div
       class="bg-image d-flex justify-content-center align-items-center"
       style="background-image: url(../static/sign-up_image.jpg); height: 30vh"
@@ -162,4 +172,5 @@
       crossorigin="anonymous"
     ></script>
   </body>
-  {% endblock %}
+
+  </html>
