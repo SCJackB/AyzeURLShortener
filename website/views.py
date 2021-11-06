@@ -16,13 +16,23 @@ def homePage():
     if request.method == "POST":
         long_url = request.form.get("longURL")
         if long_url:
-            shortened_url = pyshorteners.Shortener().isgd.short(long_url)
-            new_urls = urls(
-                shorturl=shortened_url, longurl=long_url, user_id=current_user.id
-            )
-            db.session.add(new_urls)
-            db.session.commit()
-            return redirect(url_for("views.manager"))
+            try:
+                shortened_url = pyshorteners.Shortener().isgd.short(long_url)
+            except:
+                return render_template(
+                    "home.html", formMessage="badURL", user=current_user
+                )
+            try:
+                new_urls = urls(
+                    shorturl=shortened_url, longurl=long_url, user_id=current_user.id
+                )
+                db.session.add(new_urls)
+                db.session.commit()
+                return redirect(url_for("views.manager"))
+            except:
+                return render_template(
+                    "home.html", formMessage="loginError", user=current_user
+                )
 
         # creating the variables for the different input scenarios for the email form
         # get value from first name input

@@ -19,6 +19,22 @@
 </div>
 <div class="bg-secondary">
    <div class="container">
+      <!--If the form message is 'badURL'-->
+      {% if formMessage == 'badURL' %}
+      <!--Display a dismissable error stating 'All fields required'-->
+      <div class="alert alert-dismissible alert-danger">
+         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+         Please Enter a Valid URL
+      </div>
+      {% endif %}
+      <!--If the form message is 'badURL'-->
+      {% if formMessage == 'loginError' %}
+      <!--Display a dismissable error stating 'All fields required'-->
+      <div class="alert alert-dismissible alert-danger">
+         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+         You Must be Logged in to Shorten URLs
+      </div>
+      {% endif %}
       <form action="/" method="post">
          <div class="row">
             <div class="col col-md-10">
