@@ -5,6 +5,7 @@ from flask_login import LoginManager
 import sqlalchemy
 from os import path
 
+# define db as an SQLAlchemy database
 db = SQLAlchemy()
 DB_NAME = "database.db"
 
@@ -30,14 +31,21 @@ def create_app():
     # import the database classes
     from .models import User, urls
 
+    # Initialise the flask login manager
     login_manager = LoginManager()
+    # Set the login page in the login manager to auth.login
+    # This is where users will be redirected when they try to access an auth only route
     login_manager.login_view = "auth.login"
+    # Parse app into loginmanager
     login_manager.init_app(app)
 
+    # Load the logged in user into current_user
+    # This is used accross the whole website
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(int(id))
 
+    # parse app into create_database
     create_database(app)
 
     # run app

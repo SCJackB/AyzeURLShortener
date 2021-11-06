@@ -13,15 +13,22 @@ views = Blueprint("views", __name__)
 # defining home view
 @views.route("/", methods=["POST", "GET"])
 def homePage():
+    # If the website sends data...
     if request.method == "POST":
+        # Check if the long url input box has data
         long_url = request.form.get("longURL")
+        # if it does contain data...
         if long_url:
+            # Try to shorten the input with the isgd api
             try:
                 shortened_url = pyshorteners.Shortener().isgd.short(long_url)
+            # If it cant...
             except:
+                # Prompt the user to enter a valid long url
                 return render_template(
                     "home.html", formMessage="badURL", user=current_user
                 )
+            # Try to commit the urls to the database
             try:
                 new_urls = urls(
                     shorturl=shortened_url, longurl=long_url, user_id=current_user.id
@@ -29,7 +36,9 @@ def homePage():
                 db.session.add(new_urls)
                 db.session.commit()
                 return redirect(url_for("views.manager"))
+            # If it cant...
             except:
+                # Prompt the user to login
                 return render_template(
                     "home.html", formMessage="loginError", user=current_user
                 )
@@ -131,29 +140,48 @@ def homePage():
         return render_template("home.html", user=current_user)
 
 
+# Create a route for the url expander
 @views.route("/expander", methods=["POST", "GET"])
 def expander():
+    # If the website sends data...
     if request.method == "POST":
+        # Check if the short url input box has data
         shortURL = request.form.get("shortURL")
+        # If the input box contains data...
         if shortURL:
-            expandedurl = urlexpander.expand(shortURL)
-            print(expandedurl)
-            return render_template(
-                "expanded.html",
-                user=current_user,
-                expandedurl=expandedurl,
-            )
+            # Try to expand the data in the input box into a long url with the urlexpander module
+            try:
+                expandedurl = urlexpander.expand(shortURL)
+                return render_template(
+                    "expanded.html",
+                    user=current_user,
+                    expandedurl=expandedurl,
+                )
+            # If it cant...
+            except:
+                # Prompt the user to enter a valid short url
+                return render_template(
+                    "expander.html",
+                    user=current_user,
+                    formMessage="badURL",
+                )
+        # If the input box is empty...
         else:
+            # Prompt the user to enter a valid short url
             return render_template(
                 "expander.html",
                 user=current_user,
                 formMessage="fieldError",
             )
+    # If the website doesn't send any data, return the expander.html template
     else:
         return render_template("expander.html", user=current_user)
 
 
+# defign a route for the url manager
 @views.route("/manager")
+# this page is only accessable if the user is logged in
 @login_required
 def manager():
+    # Return the manager.html template
     return render_template("manager.html", user=current_user)

@@ -4,10 +4,12 @@
 <title>Ayze</title>
 {% endblock %}
 {% block homeBody %}
+<!--Home Jumbotron-->
 <div
    class="bg-image d-flex justify-content-center align-items-center"
    style="background-image: url(../static/home_banner.jpg); height: 30vh"
    >
+   <!--Make the Ayze Logo a Link-->
    <a href="/">
    <img
       src="../static/Ayze Jumbotron.png"
@@ -21,38 +23,41 @@
    <div class="container">
       <!--If the form message is 'badURL'-->
       {% if formMessage == 'badURL' %}
-      <!--Display a dismissable error stating 'All fields required'-->
+      <!--Display a dismissable error stating 'Please enter a valid URL'-->
       <div class="alert alert-dismissible alert-danger">
          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
          Please Enter a Valid URL
       </div>
       {% endif %}
-      <!--If the form message is 'badURL'-->
+      <!--If the form message is 'loginError'-->
       {% if formMessage == 'loginError' %}
-      <!--Display a dismissable error stating 'All fields required'-->
+      <!--Display a dismissable error stating 'You Must Be Logged in to shorten URLs'-->
       <div class="alert alert-dismissible alert-danger">
          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
          You Must be Logged in to Shorten URLs
       </div>
       {% endif %}
+      <!--Create a form for the URL shortener-->
       <form action="/" method="post">
          <div class="row">
             <div class="col col-md-10">
+               <!--Add an input box for the long urls-->
                <input 
-               type="text" 
-               class="form-control my-2" 
-               placeholder="Long URL"
-               id="longURL"
-               name="longURL"
-               />
+                  type="text" 
+                  class="form-control my-2" 
+                  placeholder="Long URL"
+                  id="longURL"
+                  name="longURL"
+                  />
             </div>
+            <!--Add a submit button-->
             <div class="col col-md-2">
                <button
                   class="btn btn-primary my-2"
                   style="width: 100%"
                   type="submit"
                   value="submit"
-            >
+                  >
                Shorten URL
                </button>
             </div>

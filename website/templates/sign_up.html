@@ -79,7 +79,7 @@
             {% endif %}
             <!--If the form message variable is 'passwordError'-->
             {% if formMessage == 'passwordError' %}
-            <!--Display a dismissable error stating 'Passwords do not match'-->
+            <!--Display a dismissable error stating 'Password must be longer than 7 characters'-->
             <div class="alert alert-dismissible alert-danger">
                <button
                   type="button"
@@ -91,7 +91,7 @@
             {% endif %}
             <!--If the form message variable is 'alreadyExists'-->
             {% if formMessage == 'alreadyExists' %}
-            <!--Display a dismissable error stating 'Passwords do not match'-->
+            <!--Display a dismissable error stating 'An Account with that email already exists'-->
             <div class="alert alert-dismissible alert-danger">
                <button
                   type="button"
@@ -126,6 +126,7 @@
                      name="emailSignup"
                      />
                </div>
+               <!--First Pass word box-->
                <div class="form-group">
                   <label for="exampleInputPassword1">Create Password</label>
                   <input
@@ -136,6 +137,7 @@
                      placeholder="Password"
                      />
                </div>
+               <!--Confirm Password Box-->
                <div class="form-group" style="margin-top: 5px">
                   <input
                      type="password"
@@ -145,6 +147,7 @@
                      placeholder="Confirm Password"
                      />
                </div>
+               <!--Submit Button-->
                <button
                   type="submit"
                   class="btn btn-primary"

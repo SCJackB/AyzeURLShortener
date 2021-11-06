@@ -41,23 +41,29 @@
                      <a class="nav-link" href="/">URL Shortener</a>
                   </li>
                   <li class="nav-item">
+                     <!--Add link for the URL Expander-->
                      <a class="nav-link" href="/expander">URL Checker</a>
                   </li>
                   <li class="nav-item">
+                     <!--Add Link for the URL manager-->
                      <a class="nav-link" href="/manager">URL Manager</a>
                   </li>
                   <li class="nav-item">
+                     <!--Add an external link to my process journal-->
                      <a class="nav-link" target="_blank" href="https://scotscollegenz-my.sharepoint.com/:w:/g/personal/broughjv_scotscollege_school_nz/Ea4W2vEOAwxNhBSZgWf4LuYBewcbxpnJ7_s3GlVPGuDzQg?e=d8sKTF">About</a>
                   </li>
                </ul>
                <!--Make items stick to right side of navbar-->
                <div class="d-flex align-items-center">
+                  <!--Check if the user is logged in-->
                   {% if user.is_authenticated %}
+                  <!--If they are, Display a logout button which links to '/logout'-->
                   <a class="nav-link text-light" href="/logout">Log out</a>
+                  <!--If they aren't logged in-->
                   {% else %}
-                  <!--Log in Button-->
+                  <!--Creata a Log in Button-->
                   <a class="nav-link text-light" href="/login">Login</a>
-                  <!--Sign up Button-->
+                  <!--and a Sign up Button-->
                   <a href="/sign-up">
                   <button type="button" class="btn btn-secondary">
                   Sign up
@@ -68,6 +74,7 @@
             </div>
          </div>
       </nav>
+      <!--Add all of the jinja extentions from the other html templates-->
       {% block homeBody %}{% endblock %}
       {% block expanderBody %}{% endblock %}
       {% block managerBody %}{% endblock %}

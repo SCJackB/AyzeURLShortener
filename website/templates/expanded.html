@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% block expanderTitle %}
+<!--Add the title to the tab-->
 <title>URL Expander</title>
 {% endblock %}
-
 {% block expanderBody %}
+<!--Display the users expanded url in a table on a new page-->
 <div class='container'>
-    <table class="table table-hover">
-        <tbody>
-          <tr class="table-primary">
+   <table class="table table-hover">
+      <tbody>
+         <tr class="table-primary">
             <td class='text-center'>This URL expands to: {{ expandedurl }}</td>
-          </tr>
-        </tbody>
-      </table>
+         </tr>
+      </tbody>
+   </table>
 </div>
 {% endblock %}

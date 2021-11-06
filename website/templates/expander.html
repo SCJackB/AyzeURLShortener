@@ -3,10 +3,12 @@
 <title>URL Expander</title>
 {% endblock %}
 {% block expanderBody %}
+<!--Put the jumbotron with the expander image at the top of the page-->
 <div
    class="bg-image d-flex justify-content-center align-items-center"
    style="background-image: url(../static/expander_banner.jpg); height: 30vh"
    >
+   <!--Make the Ayze logo redirect to the home page when clicked-->
    <a href="/">
    <img
       src="../static/Ayze Jumbotron.png"
@@ -18,32 +20,44 @@
 </div>
 <!--If the form message is 'fieldError'-->
 {% if formMessage == 'fieldError' %}
-<!--Display a dismissable error stating 'All fields required'-->
+<!--Display a dismissable error stating 'This feild is required'-->
 <div class="alert alert-dismissible alert-danger">
    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
    This Feild is Required
 </div>
 {% endif %}
+<!--If the form message is 'badURL'-->
+{% if formMessage == 'badURL' %}
+<!--Display a dismissable error stating 'Please Enter a Valid URL'-->
+<div class="alert alert-dismissible alert-danger">
+   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+   Please Enter a Valid URL
+</div>
+{% endif %}
+<!--Create a division with a grey background and margins-->
 <div class="bg-secondary">
    <div class="container">
+      <!--Create a form for the URL expander-->
       <form action="/expander" method="post">
          <div class="row">
             <div class="col col-md-10">
+               <!--Create an Input Box-->
                <input 
-               type="text" 
-               class="form-control my-2" 
-               placeholder="Long URL"
-               id="shortURL"
-               name="shortURL"
-               />
+                  type="text" 
+                  class="form-control my-2" 
+                  placeholder="Long URL"
+                  id="shortURL"
+                  name="shortURL"
+                  />
             </div>
+            <!--Create a Submit Button-->
             <div class="col col-md-2">
                <button
                   class="btn btn-primary my-2"
                   style="width: 100%"
                   type="submit"
                   value="submit"
-            >
+                  >
                Expand URL
                </button>
             </div>

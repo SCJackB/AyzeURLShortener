@@ -1,37 +1,43 @@
 {% extends "base.html" %}
 {% block managerTitle %}
+<!--Add the tab Title-->
 <title>URL Manager</title>
 {% endblock %}
 {% block managerBody %}
+<!--Add the banner for the shortened url manager-->
 <div
-         class="bg-image d-flex justify-content-center align-items-center"
-         style="background-image: url(../static/manager_banner.jpg); height: 30vh"
-         >
-         <a href="/">
-         <img
-            src="../static/Ayze Jumbotron.png"
-            class="img-fluid"
-            alt="..."
-            style="height: 30vh"
-            />
-         </a>
-      </div>
+   class="bg-image d-flex justify-content-center align-items-center"
+   style="background-image: url(../static/manager_banner.jpg); height: 30vh"
+   >
+   <a href="/">
+   <img
+      src="../static/Ayze Jumbotron.png"
+      class="img-fluid"
+      alt="..."
+      style="height: 30vh"
+      />
+   </a>
+</div>
+<!--Create a flexible container-->
 <div class='container'>
+   <!--Create a table which whill contain the users urls-->
    <table class="table table-hover">
+      <!--Add a head to the table defining the catagoriess-->
       <thead>
-        <tr>
-          <th scope="col">Long URL</th>
-          <th scope="col">Short URL</th>
-        </tr>
+         <tr>
+            <th scope="col">Long URL</th>
+            <th scope="col">Short URL</th>
+         </tr>
       </thead>
+      <!--In the body of the tabe, iterate through all of the users saved urls, and display them in the table-->
       <tbody>
-      {% for url in user.urls %}
-      <tr>
-         <td><a>{{ url.longurl }}</a></td>
-         <td><a>{{ url.shorturl }}</a></td>
-       </tr>
-      {% endfor %}
-       </tbody>
+         {% for url in user.urls %}
+         <tr>
+            <td><a>{{ url.longurl }}</a></td>
+            <td><a>{{ url.shorturl }}</a></td>
+         </tr>
+         {% endfor %}
+      </tbody>
    </table>
 </div>
 {% endblock %}
