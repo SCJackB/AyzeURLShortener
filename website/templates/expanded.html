@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block expanderTitle %}
+<title>URL Expander</title>
+{% endblock %}
+
+{% block expanderBody %}
+<div class='container'>
+    <table class="table table-hover">
+        <tbody>
+          <tr class="table-primary">
+            <td class='text-center'>This URL expands to: {{ expandedurl }}</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+{% endblock %}

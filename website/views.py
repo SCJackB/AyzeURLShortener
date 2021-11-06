@@ -1,7 +1,11 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, url_for
 import smtplib
 import os
 from flask_login import login_required, current_user
+import pyshorteners
+import urlexpander
+from .models import urls
+from . import db
 
 # set up the views blueprint
 views = Blueprint("views", __name__)
@@ -9,8 +13,18 @@ views = Blueprint("views", __name__)
 # defining home view
 @views.route("/", methods=["POST", "GET"])
 def homePage():
-    # creating the variables for the different input scenarios for the email form
     if request.method == "POST":
+        long_url = request.form.get("longURL")
+        if long_url:
+            shortened_url = pyshorteners.Shortener().isgd.short(long_url)
+            new_urls = urls(
+                shorturl=shortened_url, longurl=long_url, user_id=current_user.id
+            )
+            db.session.add(new_urls)
+            db.session.commit()
+            return redirect(url_for("views.manager"))
+
+        # creating the variables for the different input scenarios for the email form
         # get value from first name input
         firstName = request.form.get("firstName")
         # get value from last name input
@@ -110,7 +124,21 @@ def homePage():
 @views.route("/expander", methods=["POST", "GET"])
 def expander():
     if request.method == "POST":
-        return render_template("expander.html", user=current_user)
+        shortURL = request.form.get("shortURL")
+        if shortURL:
+            expandedurl = urlexpander.expand(shortURL)
+            print(expandedurl)
+            return render_template(
+                "expanded.html",
+                user=current_user,
+                expandedurl=expandedurl,
+            )
+        else:
+            return render_template(
+                "expander.html",
+                user=current_user,
+                formMessage="fieldError",
+            )
     else:
         return render_template("expander.html", user=current_user)
 

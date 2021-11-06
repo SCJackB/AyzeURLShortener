@@ -24,6 +24,14 @@
           <th scope="col">Short URL</th>
         </tr>
       </thead>
+      <tbody>
+      {% for url in user.urls %}
+      <tr>
+         <td><a>{{ url.longurl }}</a></td>
+         <td><a>{{ url.shorturl }}</a></td>
+       </tr>
+      {% endfor %}
+       </tbody>
    </table>
 </div>
 {% endblock %}

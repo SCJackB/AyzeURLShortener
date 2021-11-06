@@ -16,19 +16,34 @@
       />
    </a>
 </div>
+<!--If the form message is 'fieldError'-->
+{% if formMessage == 'fieldError' %}
+<!--Display a dismissable error stating 'All fields required'-->
+<div class="alert alert-dismissible alert-danger">
+   <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+   This Feild is Required
+</div>
+{% endif %}
 <div class="bg-secondary">
    <div class="container">
-      <form>
+      <form action="/expander" method="post">
          <div class="row">
             <div class="col col-md-10">
-               <input type="text" class="form-control my-2" placeholder="Short URL" />
+               <input 
+               type="text" 
+               class="form-control my-2" 
+               placeholder="Long URL"
+               id="shortURL"
+               name="shortURL"
+               />
             </div>
             <div class="col col-md-2">
                <button
-                  type="button"
                   class="btn btn-primary my-2"
                   style="width: 100%"
-                  >
+                  type="submit"
+                  value="submit"
+            >
                Expand URL
                </button>
             </div>

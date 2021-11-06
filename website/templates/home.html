@@ -19,17 +19,24 @@
 </div>
 <div class="bg-secondary">
    <div class="container">
-      <form>
+      <form action="/" method="post">
          <div class="row">
             <div class="col col-md-10">
-               <input type="text" class="form-control my-2" placeholder="Long URL" />
+               <input 
+               type="text" 
+               class="form-control my-2" 
+               placeholder="Long URL"
+               id="longURL"
+               name="longURL"
+               />
             </div>
             <div class="col col-md-2">
                <button
-                  type="button"
                   class="btn btn-primary my-2"
                   style="width: 100%"
-                  >
+                  type="submit"
+                  value="submit"
+            >
                Shorten URL
                </button>
             </div>
