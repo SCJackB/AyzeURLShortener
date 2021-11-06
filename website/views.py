@@ -33,7 +33,10 @@ def homePage():
             # if they are blank, set the form message to 'field error' and run the render the 'home' webpage
             formMessage = "fieldError"
             return render_template(
-                "home.html", formMessage=formMessage, emailMessage=emailMessage
+                "home.html",
+                formMessage=formMessage,
+                emailMessage=emailMessage,
+                user=current_user,
             )
         # if all fields have data...
         else:
@@ -102,3 +105,17 @@ def homePage():
     else:
         # if no form submission, render the home template
         return render_template("home.html", user=current_user)
+
+
+@views.route("/expander", methods=["POST", "GET"])
+def expander():
+    if request.method == "POST":
+        return render_template("expander.html", user=current_user)
+    else:
+        return render_template("expander.html", user=current_user)
+
+
+@views.route("/manager")
+@login_required
+def manager():
+    return render_template("manager.html", user=current_user)

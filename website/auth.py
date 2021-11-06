@@ -40,7 +40,11 @@ def sign_up():
         password1 = request.form.get("createPassword")
         password2 = request.form.get("confirmPassword")
 
-        if not username or not email or not password1 or not password2:
+        user = User.query.filter_by(email=email).first()
+        if user:
+            formMessage = "alreadyExists"
+            return render_template("sign_up.html", formMessage=formMessage)
+        elif not username or not email or not password1 or not password2:
             formMessage = "fieldError"
             return render_template("sign_up.html", formMessage=formMessage)
         elif "@" not in email and "." not in email:
@@ -72,6 +76,7 @@ def sign_up():
 
 
 @auth.route("/logout")
+@login_required
 def logout():
     logout_user()
     return redirect(url_for("views.homePage"))

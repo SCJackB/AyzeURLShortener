@@ -1,6 +1,97 @@
 {% extends "base.html" %}
-
 {% block expanderTitle %}
 <title>URL Expander</title>
 {% endblock %}
-
+{% block expanderBody %}
+<div
+   class="bg-image d-flex justify-content-center align-items-center"
+   style="background-image: url(../static/expander_banner.jpg); height: 30vh"
+   >
+   <a href="/">
+   <img
+      src="../static/Ayze Jumbotron.png"
+      class="img-fluid"
+      alt="..."
+      style="height: 30vh"
+      />
+   </a>
+</div>
+<div class="bg-secondary">
+   <div class="container">
+      <form>
+         <div class="row">
+            <div class="col col-md-10">
+               <input type="text" class="form-control my-2" placeholder="Short URL" />
+            </div>
+            <div class="col col-md-2">
+               <button
+                  type="button"
+                  class="btn btn-primary my-2"
+                  style="width: 100%"
+                  >
+               Expand URL
+               </button>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
+<!--Make a container for the info cards-->
+<div class="container">
+   <!--Make a container that rearranges elements depending on screen size-->
+   <div class="row">
+      <!--Make the cards span 4 columns-->
+      <div class="col-md-4">
+         <!--Create the card w/ white text and primary background and a margin of 10px at the top and bottom-->
+         <div
+            class="card text-white bg-primary md-4"
+            style="margin-top: 10px; margin-bottom: 10px"
+            >
+            <!--Card Title-->
+            <div class="card-header">URL Shortener</div>
+            <!--Card Body-->
+            <div class="card-body">
+               <!--Info on the card-->
+               <p class="card-text">
+                  A simple converter which shortens unwieldy, long URLs into a
+                  shorter, more manageable form.
+               </p>
+               <!--'Go to' Button-->
+               <a href="/">
+               <button type="button" class="btn btn-secondary">Go to</button>
+               </a>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-4">
+         <div
+            class="card text-white bg-primary md-4"
+            style="margin-top: 10px; margin-bottom: 10px"
+            >
+            <div class="card-header">URL Checker</div>
+            <div class="card-body">
+               <p class="card-text">
+                  Essentially the inverse of the shortener, the URL Checker allows
+                  you to view the original URL from the shortened version.
+               </p>
+               <button type="button" class="btn btn-secondary">Go to</button>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-4">
+         <div
+            class="card text-white bg-primary md-4"
+            style="margin-top: 10px; margin-bottom: 10px"
+            >
+            <div class="card-header">URL Manager</div>
+            <div class="card-body">
+               <p class="card-text">
+                  View and delete your shortened URLs.<br /><br /><br />
+               </p>
+               <button type="button" class="btn btn-secondary">Go to</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

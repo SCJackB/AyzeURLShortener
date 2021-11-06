@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block managerTitle %}
+<title>URL Manager</title>
+{% endblock %}
+{% block managerBody %}
+<div
+         class="bg-image d-flex justify-content-center align-items-center"
+         style="background-image: url(../static/manager_banner.jpg); height: 30vh"
+         >
+         <a href="/">
+         <img
+            src="../static/Ayze Jumbotron.png"
+            class="img-fluid"
+            alt="..."
+            style="height: 30vh"
+            />
+         </a>
+      </div>
+<div class='container'>
+   <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Long URL</th>
+          <th scope="col">Short URL</th>
+        </tr>
+      </thead>
+   </table>
+</div>
+{% endblock %}
